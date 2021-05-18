@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h1>タクシーアプリ</h1>
+    <p><h4>{{ user.get_username }}でログイン中</h4></p>
+    <p></p>
+    <a href="{% url 'create' %}" class="btn btn-success"></button>新規作成</a>
+    <p></p>
+    <a href="{% url 'logout' %}">logout</a>
+
+</div>
+{% endblock header %}
+
+
+{% block content %}
+<div class="container">
+    {% for item in object_list %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h3 class="card-title">{{ item.author }}さん</h3>
+          <h5 class="card-subtitle mb-2 text-muted">{{ item.priority }} {{ item.myinteger }} 円</h5>
+          <p class="card-text">{{ item.regist_date }}</p>
+          <a href="{% url 'update' item.pk %}" class="btn btn-primary" role="button" aria-pressed="true">更新</a>
+          <a href="{% url 'delete' item.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">削除</a>
+          <p></p>
+        </div>
+    </div>
+    <p></p>
+    {% endfor %}
+    <p></p>
+
+    <a href="{% url 'logout' %}">logout</a>
+
+</div>
+{% endblock content %}
